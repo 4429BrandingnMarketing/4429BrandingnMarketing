@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gemini 2.5 - Computer & Browser Control</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <div class="container">
+        <!-- Header -->
+        <header class="header">
+            <div class="header-content">
+                <div class="logo">
+                    <i class="fas fa-robot"></i>
+                    <h1>Gemini 2.5 Pro</h1>
+                </div>
+                <div class="header-info">
+                    <span class="status" id="api-status">
+                        <i class="fas fa-circle"></i> Checking API...
+                    </span>
+                </div>
+            </div>
+            <p class="subtitle">AI Assistant with Computer & Browser Control</p>
+        </header>
+
+        <!-- Main Content -->
+        <div class="main-content">
+            <!-- Sidebar -->
+            <aside class="sidebar">
+                <div class="control-section">
+                    <h3><i class="fas fa-desktop"></i> Computer Control</h3>
+                    <button class="btn btn-primary" onclick="takeScreenshot()">
+                        <i class="fas fa-camera"></i> Screenshot
+                    </button>
+                    <button class="btn btn-secondary" onclick="getScreenInfo()">
+                        <i class="fas fa-info-circle"></i> Screen Info
+                    </button>
+                </div>
+
+                <div class="control-section">
+                    <h3><i class="fas fa-globe"></i> Browser Control</h3>
+                    <button class="btn btn-primary" onclick="startBrowser()">
+                        <i class="fas fa-play"></i> Start Browser
+                    </button>
+                    <button class="btn btn-secondary" onclick="closeBrowser()">
+                        <i class="fas fa-stop"></i> Close Browser
+                    </button>
+                    <div class="input-group">
+                        <input type="text" id="url-input" placeholder="Enter URL..." 
+                               value="https://www.google.com">
+                        <button class="btn btn-accent" onclick="navigateBrowser()">
+                            <i class="fas fa-arrow-right"></i> Go
+                        </button>
+                    </div>
+                    <button class="btn btn-secondary" onclick="browserScreenshot()">
+                        <i class="fas fa-camera"></i> Browser Screenshot
+                    </button>
+                </div>
+
+                <div class="control-section">
+                    <h3><i class="fas fa-cog"></i> Settings</h3>
+                    <div class="input-group">
+                        <input type="password" id="api-key-input" 
+                               placeholder="Gemini API Key (optional)">
+                        <button class="btn btn-accent" onclick="saveApiKey()">
+                            <i class="fas fa-save"></i>
+                        </button>
+                    </div>
+                    <label class="checkbox-label">
+                        <input type="checkbox" id="include-screenshot-toggle">
+                        Auto-include screenshots in chat
+                    </label>
+                </div>
+            </aside>
+
+            <!-- Chat Area -->
+            <main class="chat-container">
+                <div class="chat-messages" id="chat-messages">
+                    <div class="welcome-message">
+                        <i class="fas fa-robot"></i>
+                        <h2>Welcome to Gemini 2.5 Pro!</h2>
+                        <p>I can help you with:</p>
+                        <ul>
+                            <li><i class="fas fa-check"></i> Taking and analyzing screenshots</li>
+                            <li><i class="fas fa-check"></i> Controlling your mouse and keyboard</li>
+                            <li><i class="fas fa-check"></i> Automating browser tasks</li>
+                            <li><i class="fas fa-check"></i> Web scraping and navigation</li>
+                            <li><i class="fas fa-check"></i> General conversation and assistance</li>
+                        </ul>
+                        <p class="tip">💡 Try asking me to "take a screenshot" or "open google.com in the browser"</p>
+                    </div>
+                </div>
+                
+                <div class="chat-input-container">
+                    <textarea id="chat-input" placeholder="Ask me anything... (Press Shift+Enter for new line, Enter to send)" 
+                              rows="3"></textarea>
+                    <div class="input-actions">
+                        <button class="btn btn-icon" onclick="clearChat()" title="Clear chat">
+                            <i class="fas fa-trash"></i>
+                        </button>
+                        <button class="btn btn-primary btn-send" onclick="sendMessage()">
+                            <i class="fas fa-paper-plane"></i> Send
+                        </button>
+                    </div>
+                </div>
+            </main>
+        </div>
+    </div>
+
+    <!-- Screenshot Modal -->
+    <div class="modal" id="screenshot-modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeModal()">&times;</span>
+            <h2>Screenshot</h2>
+            <img id="screenshot-image" src="" alt="Screenshot">
+        </div>
+    </div>
+
+    <!-- Loading Overlay -->
+    <div class="loading-overlay" id="loading-overlay">
+        <div class="spinner"></div>
+        <p>Processing...</p>
+    </div>
+
+    <script src="{{ url_for('static', filename='js/app.js') }}"></script>
+</body>
+</html>
