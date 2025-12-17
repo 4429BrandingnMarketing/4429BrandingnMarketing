@@ -1,0 +1,29 @@
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom'
+import Layout from './components/Layout'
+import Dashboard from './pages/Dashboard'
+import AIAgents from './pages/AIAgents'
+import MusicBusiness from './pages/MusicBusiness'
+import Marketing from './pages/Marketing'
+import ContentStudio from './pages/ContentStudio'
+import RevenueStreams from './pages/RevenueStreams'
+import Analytics from './pages/Analytics'
+
+function App() {
+  return (
+    <Router>
+      <Layout>
+        <Routes>
+          <Route path="/" element={<Dashboard />} />
+          <Route path="/ai-agents" element={<AIAgents />} />
+          <Route path="/music-business" element={<MusicBusiness />} />
+          <Route path="/marketing" element={<Marketing />} />
+          <Route path="/content-studio" element={<ContentStudio />} />
+          <Route path="/revenue-streams" element={<RevenueStreams />} />
+          <Route path="/analytics" element={<Analytics />} />
+        </Routes>
+      </Layout>
+    </Router>
+  )
+}
+
+export default App
