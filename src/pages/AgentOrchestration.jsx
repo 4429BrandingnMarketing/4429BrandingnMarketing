@@ -18,7 +18,9 @@ import {
   Music,
   Megaphone,
   ShoppingBag,
-  User
+  User,
+  Rocket,
+  ExternalLink
 } from 'lucide-react'
 
 export default function AgentOrchestration() {
@@ -103,6 +105,61 @@ export default function AgentOrchestration() {
       <div className="mb-8">
         <h1 className="text-3xl font-bold mb-2">Agent Orchestration</h1>
         <p className="text-gray-400">Deploy, manage, and monitor your AI workforce</p>
+      </div>
+
+      {/* Auto-Claude Integration Banner */}
+      <div className="card mb-8 bg-gradient-to-r from-purple-500/10 to-pink-500/10 border-2 border-purple-500/30">
+        <div className="flex items-start justify-between">
+          <div className="flex items-start space-x-4">
+            <div className="w-16 h-16 bg-gradient-to-br from-purple-500 to-pink-500 rounded-xl flex items-center justify-center flex-shrink-0">
+              <Rocket className="w-8 h-8 text-white" />
+            </div>
+            <div className="flex-1">
+              <h3 className="text-xl font-bold mb-2">🚀 Auto-Claude Integration Available</h3>
+              <p className="text-gray-300 mb-3">
+                Supercharge your agent workforce with <strong>Auto-Claude</strong> - an autonomous multi-agent coding framework.
+                Deploy up to <strong>12 concurrent AI agents</strong> to plan, build, and validate software in parallel.
+              </p>
+              <div className="flex flex-wrap gap-4">
+                <div className="flex items-center text-sm">
+                  <CheckCircle className="w-4 h-4 text-green-400 mr-2" />
+                  <span>Autonomous task execution</span>
+                </div>
+                <div className="flex items-center text-sm">
+                  <CheckCircle className="w-4 h-4 text-green-400 mr-2" />
+                  <span>Isolated git worktrees</span>
+                </div>
+                <div className="flex items-center text-sm">
+                  <CheckCircle className="w-4 h-4 text-green-400 mr-2" />
+                  <span>Self-validating QA</span>
+                </div>
+                <div className="flex items-center text-sm">
+                  <CheckCircle className="w-4 h-4 text-green-400 mr-2" />
+                  <span>Visual Kanban board</span>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div className="flex flex-col space-y-2 ml-4">
+            <a
+              href="/AUTO_CLAUDE_INTEGRATION.md"
+              target="_blank"
+              className="btn-primary flex items-center space-x-2 whitespace-nowrap"
+            >
+              <span>Setup Guide</span>
+              <ExternalLink className="w-4 h-4" />
+            </a>
+            <a
+              href="https://github.com/AndyMik90/Auto-Claude"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="btn-secondary flex items-center space-x-2 whitespace-nowrap text-center"
+            >
+              <span>View on GitHub</span>
+              <ExternalLink className="w-4 h-4" />
+            </a>
+          </div>
+        </div>
       </div>
 
       {/* Overview Stats */}
