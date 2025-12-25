@@ -14,7 +14,8 @@ import {
   ShoppingBag,
   Target,
   Zap,
-  Settings
+  Settings,
+  Sparkles
 } from 'lucide-react'
 import AIAssistant from './AIAssistant'
 
@@ -29,6 +30,7 @@ const navigation = [
   { name: 'Marketing', href: '/marketing', icon: Megaphone },
   { name: 'Content Studio', href: '/content-studio', icon: Video },
   { name: 'Analytics', href: '/analytics', icon: BarChart3 },
+  { name: '🤗 Hugging Face', href: '/huggingface', icon: Sparkles },
   { name: 'Admin Panel', href: '/admin', icon: Settings },
 ]
 

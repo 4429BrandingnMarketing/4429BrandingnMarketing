@@ -11,6 +11,7 @@ import RevenueStreams from './pages/RevenueStreams'
 import PersonalDashboard from './pages/PersonalDashboard'
 import Analytics from './pages/Analytics'
 import AdminPanel from './pages/AdminPanel'
+import HuggingFaceHub from './pages/HuggingFaceHub'
 
 function App() {
   return (
@@ -27,6 +28,7 @@ function App() {
           <Route path="/revenue-streams" element={<RevenueStreams />} />
           <Route path="/personal" element={<PersonalDashboard />} />
           <Route path="/analytics" element={<Analytics />} />
+          <Route path="/huggingface" element={<HuggingFaceHub />} />
           <Route path="/admin" element={<AdminPanel />} />
         </Routes>
       </Layout>

@@ -41,7 +41,8 @@ export default function AdminPanel() {
     { id: 2, name: 'OpenAI API', service: 'OpenAI', status: 'active', usage: '32%', lastUsed: '5 min ago' },
     { id: 3, name: 'Stripe API', service: 'Stripe', status: 'active', usage: '12%', lastUsed: '1 hour ago' },
     { id: 4, name: 'Notion API', service: 'Notion', status: 'active', usage: '8%', lastUsed: '15 min ago' },
-    { id: 5, name: 'Spotify API', service: 'Spotify', status: 'inactive', usage: '0%', lastUsed: 'Never' },
+    { id: 5, name: 'Hugging Face API', service: 'Hugging Face', status: 'active', usage: '18%', lastUsed: '10 min ago' },
+    { id: 6, name: 'Spotify API', service: 'Spotify', status: 'inactive', usage: '0%', lastUsed: 'Never' },
   ])
 
   const [integrations] = useState([
@@ -49,6 +50,7 @@ export default function AdminPanel() {
     { name: 'Stripe', status: 'connected', health: 'good', lastSync: '5 min ago' },
     { name: 'Airtable', status: 'connected', health: 'good', lastSync: '10 min ago' },
     { name: 'Figma', status: 'connected', health: 'good', lastSync: '1 hour ago' },
+    { name: 'Hugging Face', status: 'connected', health: 'good', lastSync: '10 min ago' },
     { name: 'Spotify', status: 'disconnected', health: 'unknown', lastSync: 'Never' },
     { name: 'Instagram', status: 'disconnected', health: 'unknown', lastSync: 'Never' },
   ])
