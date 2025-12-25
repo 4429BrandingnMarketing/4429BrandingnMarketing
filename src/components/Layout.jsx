@@ -16,7 +16,7 @@ import {
   Zap,
   Settings
 } from 'lucide-react'
-import AIAssistant from './AIAssistant'
+import GeminiAssistant from './GeminiAssistant'
 
 const navigation = [
   { name: 'Command Center', href: '/', icon: LayoutDashboard },
@@ -39,8 +39,8 @@ export default function Layout({ children }) {
 
   return (
     <div className="min-h-screen bg-dark-900">
-      {/* AI Assistant */}
-      <AIAssistant />
+      {/* Gemini 2.0 Multimodal Assistant */}
+      <GeminiAssistant />
       {/* Mobile sidebar */}
       <div className={`fixed inset-0 z-50 lg:hidden ${sidebarOpen ? '' : 'pointer-events-none'}`}>
         <div
