@@ -14,8 +14,7 @@ import {
   ShoppingBag,
   Target,
   Zap,
-  Settings,
-  Sparkles
+  Settings
 } from 'lucide-react'
 import AIAssistant from './AIAssistant'
 
