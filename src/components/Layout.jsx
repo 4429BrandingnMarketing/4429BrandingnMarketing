@@ -12,12 +12,14 @@ import {
   X,
   Sparkles,
   ShoppingBag,
-  Target
+  Target,
+  Zap
 } from 'lucide-react'
 import AIAssistant from './AIAssistant'
 
 const navigation = [
   { name: 'Command Center', href: '/', icon: LayoutDashboard },
+  { name: 'Agent Orchestration', href: '/agent-orchestration', icon: Zap },
   { name: 'AI Agents', href: '/ai-agents', icon: Bot },
   { name: 'Red Vision Music', href: '/music-business', icon: Music },
   { name: '#4429 Lifestyle', href: '/lifestyle-branding', icon: Megaphone },
