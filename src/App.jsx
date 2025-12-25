@@ -10,6 +10,7 @@ import ContentStudio from './pages/ContentStudio'
 import RevenueStreams from './pages/RevenueStreams'
 import PersonalDashboard from './pages/PersonalDashboard'
 import Analytics from './pages/Analytics'
+import AdminPanel from './pages/AdminPanel'
 
 function App() {
   return (
@@ -26,6 +27,7 @@ function App() {
           <Route path="/revenue-streams" element={<RevenueStreams />} />
           <Route path="/personal" element={<PersonalDashboard />} />
           <Route path="/analytics" element={<Analytics />} />
+          <Route path="/admin" element={<AdminPanel />} />
         </Routes>
       </Layout>
     </Router>
