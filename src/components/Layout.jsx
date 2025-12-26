@@ -10,17 +10,27 @@ import {
   BarChart3,
   Menu,
   X,
-  Sparkles
+  Sparkles,
+  ShoppingBag,
+  Target,
+  Zap,
+  Settings
 } from 'lucide-react'
+import GeminiAssistant from './GeminiAssistant'
 
 const navigation = [
   { name: 'Command Center', href: '/', icon: LayoutDashboard },
+  { name: 'Agent Orchestration', href: '/agent-orchestration', icon: Zap },
   { name: 'AI Agents', href: '/ai-agents', icon: Bot },
-  { name: 'Music Business', href: '/music-business', icon: Music },
+  { name: 'Red Vision Music', href: '/music-business', icon: Music },
+  { name: '#4429 Lifestyle', href: '/lifestyle-branding', icon: Megaphone },
+  { name: 'GiFTD N\' PrVLGD', href: '/revenue-streams', icon: ShoppingBag },
+  { name: 'Jason Salvador', href: '/personal', icon: Target },
   { name: 'Marketing', href: '/marketing', icon: Megaphone },
   { name: 'Content Studio', href: '/content-studio', icon: Video },
-  { name: 'Revenue Streams', href: '/revenue-streams', icon: DollarSign },
   { name: 'Analytics', href: '/analytics', icon: BarChart3 },
+  { name: '🤗 Hugging Face', href: '/huggingface', icon: Sparkles },
+  { name: 'Admin Panel', href: '/admin', icon: Settings },
 ]
 
 export default function Layout({ children }) {
@@ -29,6 +39,8 @@ export default function Layout({ children }) {
 
   return (
     <div className="min-h-screen bg-dark-900">
+      {/* Gemini 2.0 Multimodal Assistant */}
+      <GeminiAssistant />
       {/* Mobile sidebar */}
       <div className={`fixed inset-0 z-50 lg:hidden ${sidebarOpen ? '' : 'pointer-events-none'}`}>
         <div
