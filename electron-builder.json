@@ -79,25 +79,12 @@
     "target": [
       {
         "target": "AppImage",
-        "arch": ["x64", "arm64"]
-      },
-      {
-        "target": "deb",
-        "arch": ["x64", "arm64"]
-      },
-      {
-        "target": "rpm",
         "arch": ["x64"]
       }
     ],
     "icon": "build/icons",
     "category": "Audio;Music;AudioVideo",
-    "artifactName": "${productName}-${version}-${arch}.${ext}",
-    "desktop": {
-      "Name": "Visionary OS",
-      "Comment": "Your Complete Music Empire Operating System",
-      "GenericName": "Music Business Platform"
-    }
+    "artifactName": "${productName}-${version}-${arch}.${ext}"
   },
   "publish": {
     "provider": "github",
