@@ -1,6 +1,11 @@
-const { app, BrowserWindow, Menu, shell } = require('electron')
+const { app, BrowserWindow, Menu, shell, dialog } = require('electron')
+const { autoUpdater } = require('electron-updater')
 const path = require('path')
 const isDev = process.env.NODE_ENV === 'development'
+
+// Configure auto-updater
+autoUpdater.autoDownload = true
+autoUpdater.autoInstallOnAppQuit = true
 
 let mainWindow
 
@@ -95,6 +100,38 @@ function createWindow() {
       label: 'Help',
       submenu: [
         {
+          label: 'Check for Updates',
+          click: () => {
+            if (!isDev) {
+              autoUpdater.checkForUpdates().then((updateCheckResult) => {
+                if (!updateCheckResult || !updateCheckResult.updateInfo) {
+                  dialog.showMessageBox(mainWindow, {
+                    type: 'info',
+                    title: 'No Updates',
+                    message: 'You are running the latest version of Visionary OS.',
+                    buttons: ['OK']
+                  })
+                }
+              }).catch((error) => {
+                dialog.showMessageBox(mainWindow, {
+                  type: 'error',
+                  title: 'Update Check Failed',
+                  message: 'Unable to check for updates. Please try again later.',
+                  buttons: ['OK']
+                })
+              })
+            } else {
+              dialog.showMessageBox(mainWindow, {
+                type: 'info',
+                title: 'Development Mode',
+                message: 'Auto-updates are disabled in development mode.',
+                buttons: ['OK']
+              })
+            }
+          }
+        },
+        { type: 'separator' },
+        {
           label: 'Documentation',
           click: async () => {
             await shell.openExternal('https://github.com/yourusername/4429BrandingnMarketing')
@@ -170,6 +207,17 @@ function createWindow() {
 app.whenReady().then(() => {
   createWindow()
 
+  // Check for updates (only in production)
+  if (!isDev) {
+    // Check for updates on startup
+    autoUpdater.checkForUpdatesAndNotify()
+
+    // Check for updates every 4 hours
+    setInterval(() => {
+      autoUpdater.checkForUpdatesAndNotify()
+    }, 4 * 60 * 60 * 1000)
+  }
+
   app.on('activate', () => {
     // On macOS, re-create window when dock icon is clicked and no other windows open
     if (BrowserWindow.getAllWindows().length === 0) {
@@ -183,6 +231,46 @@ app.on('window-all-closed', () => {
   if (process.platform !== 'darwin') {
     app.quit()
   }
+})
+
+// Auto-updater event handlers
+autoUpdater.on('checking-for-update', () => {
+  console.log('Checking for updates...')
+})
+
+autoUpdater.on('update-available', (info) => {
+  console.log('Update available:', info.version)
+})
+
+autoUpdater.on('update-not-available', () => {
+  console.log('No updates available')
+})
+
+autoUpdater.on('error', (err) => {
+  console.error('Auto-updater error:', err)
+})
+
+autoUpdater.on('download-progress', (progressObj) => {
+  const message = `Download speed: ${progressObj.bytesPerSecond} - Downloaded ${progressObj.percent}%`
+  console.log(message)
+})
+
+autoUpdater.on('update-downloaded', (info) => {
+  // Show dialog when update is ready
+  dialog.showMessageBox(mainWindow, {
+    type: 'info',
+    title: 'Update Available',
+    message: `Visionary OS v${info.version} is ready to install.`,
+    detail: 'The application will restart to install the update.',
+    buttons: ['Install and Restart', 'Install Later'],
+    defaultId: 0,
+    cancelId: 1
+  }).then((result) => {
+    if (result.response === 0) {
+      // User chose to install now
+      autoUpdater.quitAndInstall(false, true)
+    }
+  })
 })
 
 // Security: Prevent navigation to external URLs
