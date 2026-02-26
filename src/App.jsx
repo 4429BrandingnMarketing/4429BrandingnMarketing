@@ -14,6 +14,7 @@ import PersonalDashboard from './pages/PersonalDashboard'
 import Analytics from './pages/Analytics'
 import AdminPanel from './pages/AdminPanel'
 import HuggingFaceHub from './pages/HuggingFaceHub'
+import ComputerUse from './pages/ComputerUse'
 
 function LandingPageWrapper() {
   const navigate = useNavigate()
@@ -40,6 +41,7 @@ function App() {
         <Route path="/analytics" element={<Layout><Analytics /></Layout>} />
         <Route path="/huggingface" element={<Layout><HuggingFaceHub /></Layout>} />
         <Route path="/admin" element={<Layout><AdminPanel /></Layout>} />
+        <Route path="/computer-use" element={<Layout><ComputerUse /></Layout>} />
       </Routes>
     </Router>
   )

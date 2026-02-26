@@ -14,12 +14,14 @@ import {
   ShoppingBag,
   Target,
   Zap,
-  Settings
+  Settings,
+  Monitor
 } from 'lucide-react'
 import GeminiAssistant from './GeminiAssistant'
 
 const navigation = [
-  { name: 'Command Center', href: '/', icon: LayoutDashboard },
+  { name: 'Command Center', href: '/dashboard', icon: LayoutDashboard },
+  { name: '🖥️ Computer Use', href: '/computer-use', icon: Monitor, highlight: true },
   { name: 'Agent Orchestration', href: '/agent-orchestration', icon: Zap },
   { name: 'AI Agents', href: '/ai-agents', icon: Bot },
   { name: 'Red Vision Music', href: '/music-business', icon: Music },
@@ -71,11 +73,16 @@ export default function Layout({ children }) {
                   className={`flex items-center space-x-3 px-3 py-3 rounded-lg transition-all ${
                     isActive
                       ? 'bg-primary-600 text-white'
+                      : item.highlight
+                      ? 'text-blue-300 bg-blue-500/10 hover:bg-blue-500/20 hover:text-white border border-blue-500/30'
                       : 'text-gray-400 hover:bg-dark-700 hover:text-white'
                   }`}
                 >
                   <Icon className="w-5 h-5" />
                   <span className="font-medium">{item.name}</span>
+                  {item.highlight && !isActive && (
+                    <span className="ml-auto text-[10px] bg-blue-500 text-white px-1.5 py-0.5 rounded-full font-bold">NEW</span>
+                  )}
                 </Link>
               )
             })}
@@ -103,6 +110,8 @@ export default function Layout({ children }) {
                   className={`flex items-center space-x-3 px-3 py-3 rounded-lg transition-all ${
                     isActive
                       ? 'bg-primary-600 text-white'
+                      : item.highlight
+                      ? 'text-blue-300 bg-blue-500/10 hover:bg-blue-500/20 hover:text-white border border-blue-500/30'
                       : 'text-gray-400 hover:bg-dark-700 hover:text-white'
                   }`}
                 >

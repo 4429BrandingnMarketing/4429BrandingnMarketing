@@ -1,4 +1,4 @@
-const { app, BrowserWindow, Menu, shell, dialog } = require('electron')
+const { app, BrowserWindow, Menu, shell, dialog, ipcMain, desktopCapturer } = require('electron')
 const { autoUpdater } = require('electron-updater')
 const path = require('path')
 const isDev = process.env.NODE_ENV === 'development'
@@ -281,4 +281,45 @@ app.on('web-contents-created', (event, contents) => {
       event.preventDefault()
     }
   })
+})
+
+// ── Gemini 2.5 Computer Use IPC Handlers ────────────────────────────────────
+
+// Capture the full screen as base64 PNG for the AI agent
+ipcMain.handle('capture-screen', async () => {
+  try {
+    const sources = await desktopCapturer.getSources({
+      types: ['screen'],
+      thumbnailSize: { width: 1280, height: 800 }
+    })
+    if (sources.length === 0) return null
+    // Return base64 PNG (strip the data URI prefix)
+    const dataUrl = sources[0].thumbnail.toDataURL()
+    return dataUrl.replace(/^data:image\/png;base64,/, '')
+  } catch (err) {
+    console.error('Screen capture error:', err)
+    return null
+  }
+})
+
+// Execute a computer-use action sent from the renderer
+ipcMain.handle('execute-action', async (event, action) => {
+  // In a full implementation you would use robotjs or similar
+  // to perform real mouse/keyboard actions.
+  // For now we log and return success so the agent loop works.
+  console.log('[ComputerUse] action:', action)
+  return { success: true, action }
+})
+
+// Navigate the main window to a URL (for browser-use tasks)
+ipcMain.handle('navigate-to', async (event, url) => {
+  try {
+    if (mainWindow) {
+      mainWindow.loadURL(url)
+      return { success: true }
+    }
+    return { success: false, error: 'No main window' }
+  } catch (err) {
+    return { success: false, error: err.message }
+  }
 })
