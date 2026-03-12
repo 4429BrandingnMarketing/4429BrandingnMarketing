@@ -27,3 +27,20 @@ dist-ssr
 .env
 .env.local
 .env.production
+
+# External repositories (keep separate)
+auto-claude/
+
+# Electron build output
+release/
+dist-electron/
+*.dmg
+*.exe
+*.deb
+*.rpm
+*.AppImage
+*.zip
+*.tar.gz
+
+# Build resources
+build/

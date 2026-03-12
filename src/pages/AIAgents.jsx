@@ -8,10 +8,13 @@ import {
   CheckCircle,
   Clock,
   Zap,
-  Plus
+  Plus,
+  ExternalLink
 } from 'lucide-react'
+import MoltbotIntegration from '../components/MoltbotIntegration'
 
 export default function AIAgents() {
+  const [showMoltbot, setShowMoltbot] = useState(false)
   const [agents, setAgents] = useState([
     {
       id: 1,
@@ -73,6 +76,17 @@ export default function AIAgents() {
       efficiency: 96,
       lastActive: '30 minutes ago'
     },
+    {
+      id: 7,
+      name: '🦞 Moltbot Assistant',
+      description: 'Personal AI that controls your computer via WhatsApp/Telegram',
+      status: 'idle',
+      tasksCompleted: 0,
+      tasksToday: 0,
+      efficiency: 100,
+      lastActive: 'Not configured',
+      isMoltbot: true
+    },
   ])
 
   const toggleAgentStatus = (agentId) => {
@@ -95,6 +109,52 @@ export default function AIAgents() {
           <span>Deploy New Agent</span>
         </button>
       </div>
+
+      {/* Moltbot Feature Banner */}
+      <div className="mb-8 p-6 bg-gradient-to-br from-orange-900/20 to-pink-900/20 rounded-2xl border border-orange-500/30">
+        <div className="flex items-start justify-between">
+          <div className="flex items-start gap-4">
+            <div className="text-5xl">🦞</div>
+            <div className="flex-1">
+              <h2 className="text-2xl font-bold mb-2 flex items-center gap-2">
+                Moltbot Integration
+                <span className="px-2 py-1 bg-orange-500/20 text-orange-400 text-xs rounded-full font-semibold">
+                  NEW
+                </span>
+              </h2>
+              <p className="text-gray-400 mb-4">
+                Control your entire music empire from WhatsApp or Telegram. Send commands, get analytics,
+                manage your catalog, and automate tasks - all through messaging apps.
+              </p>
+              <div className="flex gap-3">
+                <button
+                  onClick={() => setShowMoltbot(!showMoltbot)}
+                  className="px-6 py-2 bg-gradient-to-r from-orange-500 to-pink-500 text-white rounded-lg font-semibold hover:opacity-90 transition flex items-center gap-2"
+                >
+                  {showMoltbot ? 'Hide' : 'Configure'} Moltbot
+                  <ExternalLink className="w-4 h-4" />
+                </button>
+                <a
+                  href="https://github.com/moltbot/moltbot"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="px-6 py-2 bg-white/10 text-white rounded-lg font-semibold hover:bg-white/20 transition flex items-center gap-2"
+                >
+                  Learn More
+                  <ExternalLink className="w-4 h-4" />
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      {/* Moltbot Configuration Panel */}
+      {showMoltbot && (
+        <div className="mb-8">
+          <MoltbotIntegration />
+        </div>
+      )}
 
       {/* Overview Stats */}
       <div className="grid grid-cols-1 md:grid-cols-4 gap-6 mb-8">
@@ -181,27 +241,39 @@ export default function AIAgents() {
             </div>
 
             <div className="flex space-x-2">
-              <button
-                onClick={() => toggleAgentStatus(agent.id)}
-                className={`btn flex-1 flex items-center justify-center space-x-2 ${
-                  agent.status === 'active' ? 'btn-secondary' : 'btn-primary'
-                }`}
-              >
-                {agent.status === 'active' ? (
-                  <>
-                    <Pause className="w-4 h-4" />
-                    <span>Pause</span>
-                  </>
-                ) : (
-                  <>
-                    <Play className="w-4 h-4" />
-                    <span>Activate</span>
-                  </>
-                )}
-              </button>
-              <button className="btn-secondary flex items-center justify-center">
-                <Settings className="w-4 h-4" />
-              </button>
+              {agent.isMoltbot ? (
+                <button
+                  onClick={() => setShowMoltbot(true)}
+                  className="btn-primary flex-1 flex items-center justify-center space-x-2"
+                >
+                  <Settings className="w-4 h-4" />
+                  <span>Configure</span>
+                </button>
+              ) : (
+                <>
+                  <button
+                    onClick={() => toggleAgentStatus(agent.id)}
+                    className={`btn flex-1 flex items-center justify-center space-x-2 ${
+                      agent.status === 'active' ? 'btn-secondary' : 'btn-primary'
+                    }`}
+                  >
+                    {agent.status === 'active' ? (
+                      <>
+                        <Pause className="w-4 h-4" />
+                        <span>Pause</span>
+                      </>
+                    ) : (
+                      <>
+                        <Play className="w-4 h-4" />
+                        <span>Activate</span>
+                      </>
+                    )}
+                  </button>
+                  <button className="btn-secondary flex items-center justify-center">
+                    <Settings className="w-4 h-4" />
+                  </button>
+                </>
+              )}
             </div>
           </div>
         ))}

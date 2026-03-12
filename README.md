@@ -79,6 +79,17 @@ Track everything that matters:
 - Traffic sources
 - Performance insights
 
+### 🚀 Auto-Claude Integration
+Supercharge your development with autonomous multi-agent coding:
+- **12 concurrent AI agents** - Build features in parallel
+- **Autonomous task execution** - Describe goals, agents handle implementation
+- **Isolated workspaces** - Git worktrees keep main branch safe
+- **Self-validating QA** - Catches issues before human review
+- **Visual Kanban board** - Track agent progress in real-time
+- **CLI automation** - Headless operation for CI/CD
+
+**[View Setup Guide](AUTO_CLAUDE_INTEGRATION.md)** | **[Auto-Claude on GitHub](https://github.com/AndyMik90/Auto-Claude)**
+
 ---
 
 ## 🛠️ Tech Stack
